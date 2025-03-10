@@ -131,8 +131,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
-# Load API Key from environment variables or define it directly
-GOOGLE_GEMINI_API_KEY = os.getenv("GOOGLE_GEMINI_API_KEY", "AIzaSyAKu81pUUT2WbxPnjQntvHHxiFwlhCCU-A")
+# # Load API Key from environment variables or define it directly
+GOOGLE_API_KEY = os.getenv("GOOGLE_GEMINI_API_KEY", "AIzaSyAFUPQxrIFWVoN71Uru0OoNRuuovKH7wYI")
 
 import os
 import django
@@ -142,3 +142,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
 django.setup()
 
 from myapp.models import BookRecommendation
+MEDIA_URL='media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')

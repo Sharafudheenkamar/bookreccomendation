@@ -23,20 +23,24 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>si.no</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Genre</th>
                     <th>Rating</th>
+                    <td>Bookcover</td>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for book in books %}
                 <tr>
+                    <td>{{forloop.counter}}</td>
                     <td>{{ book.book_title }}</td>
                     <td>{{ book.author }}</td>
                     <td>{{ book.genre }}</td>
                     <td>{{ book.review}}</td>
+                    <td>{% if book.bookcoverimage %}<img src="{{book.bookcoverimage.url}}">{% endif %}</td>
                     <td>
                         <a href="{% url 'book_recommendation_update' book.pk %}" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{% url 'book_recommendation_delete' book.pk %}" class="btn btn-sm btn-danger">Delete</a>

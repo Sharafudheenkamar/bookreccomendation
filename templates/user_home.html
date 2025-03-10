@@ -81,8 +81,10 @@
 <body>
     <div class="home-container">
         <h1>Welcome to Your Home Page</h1>
-        <a href="{% url 'book_list' %}" class="btn btn-custom btn-review">Write a Review</a>
+        <a href="{% url 'puzzle' %}" class="btn btn-custom btn-review">Puzzle</a>
+        <a href="{% url 'review_page' %}" class="btn btn-custom btn-review">Write a Review</a>
         <a href="{% url 'chat' %}" class="btn btn-custom btn-chat">Start Chat</a>
+        {% comment %}<a href="{% url 'IndexView' %}" class="btn btn-custom btn-chat">Book Recommender</a> {% endcomment %}
         <!-- Logout Button -->
         <form action="{% url 'LogoutPage' %}" method="get" style="margin-top: 20px;">
             {% csrf_token %}

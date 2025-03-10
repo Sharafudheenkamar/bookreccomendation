@@ -21,4 +21,11 @@ urlpatterns = [
     path('create/', PredefinedQuestionCreateView.as_view(), name='predefined_question_create'),
     path('update/<int:pk>/', PredefinedQuestionUpdateView.as_view(), name='predefined_question_update'),
     path('delete/<int:pk>/', PredefinedQuestionDeleteView.as_view(), name='predefined_question_delete'),
+    path('IndexView',IndexView.as_view(),name='IndexView'),
+    path('RecommendView',RecommendView.as_view(),name='RecommendView'),
+    path('recommended-books/', recommended_books_view, name='recommended_books'),
+    path("puzzle/<int:level>/", PuzzleView.as_view(), name='puzzle'),
+    path("puzzle/", PuzzleView.as_view(), name='puzzle'),
+    path('reviews/', ReviewView.as_view(), name='review_page'),
+
 ]

@@ -18,6 +18,7 @@
 
         #chat-container {
             width: 100%;
+
             max-width: 600px;
             background-color: #fff;
             border-radius: 10px;
@@ -47,29 +48,34 @@
         }
 
         #chat-box {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto; /* Enable vertical scrolling */
-            background-color: #f9f9f9;
-            border-bottom: 1px solid #ddd;
-            height: 400px; /* Set a fixed height for the chat box */
-            max-height: 400px; /* Ensure it doesn't exceed this height */
-        }
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    min-height: 400px; /* Set minimum height */
+    max-height: 80vh; /* Allow it to grow dynamically */
+    display: flex;
+    flex-direction: column;
+}
 
-        .message {
-            margin: 10px 0;
-            max-width: 70%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            position: relative;
-            word-wrap: break-word;
-        }
+ .message {
+    margin: 10px 0;
+    max-width: 70%;
+    padding: 12px 18px;
+    border-radius: 15px;
+    font-size: 16px;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Ensures text breaks into new lines */
+    display: inline-block; /* Ensures it wraps properly */
+}
 
         .bot-message {
             background-color: #e0e0e0;
             color: #333;
             align-self: flex-start;
             border-bottom-left-radius: 5px;
+            height: auto;
         }
 
         .user-message {
@@ -193,12 +199,15 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.error) {
-                        appendMessage('bot', data.error);
-                    } else {
-                        appendMessage('bot', data.response);
-                    }
-                })
+        if (data.redirect_url) {
+            // Redirect the user to the recommended books page
+            window.location.href = data.redirect_url;
+        } else if (data.error) {
+            appendMessage('bot', data.error);
+        } else {
+            appendMessage('bot', data.message);
+        }
+    })
                 .catch(error => {
                     console.error('Error:', error);
                     appendMessage('bot', 'An error occurred. Please try again later.');

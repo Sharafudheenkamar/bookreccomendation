@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Books</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Book Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .books {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Book Cards */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card img {
+        width: 150px; /* Increase width */
+        height: 225px; /* Increase height */
+        object-fit: cover;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out; /* Add hover effect */
+    }
+
+    .card img:hover {
+        transform: scale(1.1); /* Slight zoom-in effect */
+    }
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .books {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Navigation -->
+    <div class="header">
+        <h2>📚 Recommended Books</h2>
+        <div class="nav-buttons">
+            <a href="{% url 'user_home' %}">🏠 Home</a>
+            <a href="{% url 'LogoutPage' %}">🚪 Logout</a>
+        </div>
+    </div>
+
+    <!-- Book Display -->
+    <div class="container">
+        <div class="books">
+            {% comment %}{% for book in books %}{% endcomment %}
+            <div class="card">
+                <img src="{{ books.bookcoverimage.url }}" alt="{{ book.title }}">
+                <h3>{{ books.title }}</h3>
+                <p><strong>Author:</strong> {{ books.author }}</p>
+                <p><strong>Rating:</strong> ⭐ {{ books.review }}</p>
+                <p>{{ books.description }}</p>
+            </div>
+          {% comment %}  {% endfor %} {% endcomment %}
+        </div>
+        <div style="margin: 20px;">
+            <a href="{% url 'chat' %}" style="
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: white;
+                background-color: #28a745;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: 0.3s ease-in-out;">
+                💬 Do you want to suggest another book?
+            </a>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
